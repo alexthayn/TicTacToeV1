@@ -1,13 +1,12 @@
-package com.example.alexthayn.tictactoev0;
+package com.example.alexthayn.tictactoev1;
 
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.GridLayout;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
     private Button[][] buttons;
@@ -34,18 +33,33 @@ public class MainActivity extends AppCompatActivity {
 
         //Create the buttons and add them to gridLayout
         buttons = new Button[TicTacToe.SIDE][TicTacToe.SIDE];
-
+        ButtonHandler bh = new ButtonHandler();
 
         for(int row = 0; row<TicTacToe.SIDE; row++){
             for(int col = 0; col < TicTacToe.SIDE; col++){
                 buttons[row][col] = new Button(this);
                 buttons[row][col].setTextSize((int)(w*.2));
-
+                buttons[row][col].setOnClickListener(bh);
                 gridLayout.addView( buttons[row][col], w, w);
             }
         }
 
         //set gridLayout as the View of the activity
         setContentView(gridLayout);
+    }
+
+    public void update(int row, int col){
+        Log.w("MainActivity", "Inside update: " + row + ", " + col);
+        buttons[row][col].setText("X");
+    }
+
+    private class ButtonHandler implements View.OnClickListener{
+        public void onClick(View v){
+            Log.w("MainActivity", "Inside onClick, v = " + v);
+            for(int row = 0; row< TicTacToe.SIDE;row++)
+                for(int column = 0; column < TicTacToe.SIDE; column++)
+                    if(v == buttons[row][column])
+                        update(row, column);
+        }
     }
 }

@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.alexthayn.tictactoev0.MainActivity">
+    tools:context="com.example.alexthayn.tictactoev1.MainActivity">
 
 </android.support.constraint.ConstraintLayout>
